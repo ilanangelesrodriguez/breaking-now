@@ -3,16 +3,10 @@ import { NewsPagination } from "@/components/news/news-pagination"
 import { SearchHeader } from "@/components/news/search-header"
 import { searchNews } from "@/services"
 
-interface SearchPageProps {
-  searchParams: {
-    q: string
-    page?: string
-    sortBy?: string
-    language?: string
-  }
-}
+export default async function SearchPage(props: any) {
+  // Extraemos searchParams de props
+  const searchParams = props.searchParams || {}
 
-export default async function SearchPage({ searchParams }: SearchPageProps) {
   const query = searchParams.q || ""
   const page = Number.parseInt(searchParams.page || "1", 10)
   const sortBy = searchParams.sortBy || "publishedAt"
@@ -31,4 +25,5 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     </section>
   )
 }
+
 
