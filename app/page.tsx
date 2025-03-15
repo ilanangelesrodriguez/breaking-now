@@ -6,13 +6,12 @@ import { TrendingNews } from "@/components/news/trending-news"
 import { PageAttachment } from "@/components/SavedArticle/page-attachment"
 import { getTopHeadlines } from "@/services"
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams?: { [key: string]: string | string[] | undefined }
-}) {
-  const category = typeof searchParams?.category === "string" ? searchParams.category : "general"
-  const page = Number.parseInt(typeof searchParams?.page === "string" ? searchParams.page : "1", 10)
+export default async function Home(props: any) {
+  // Extraemos searchParams de props
+  const searchParams = props.searchParams || {}
+
+  const category = typeof searchParams.category === "string" ? searchParams.category : "general"
+  const page = Number.parseInt(typeof searchParams.page === "string" ? searchParams.page : "1", 10)
   const pageSize = 9
 
   const newsData = await getTopHeadlines("us", category, pageSize, page)
@@ -42,3 +41,4 @@ export default async function Home({
     </section>
   )
 }
+
