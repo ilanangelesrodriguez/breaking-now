@@ -1,56 +1,49 @@
-import { Link } from "@heroui/link";
-import { Snippet } from "@heroui/snippet";
-import { Code } from "@heroui/code";
-import { button as buttonStyles } from "@heroui/theme";
+import { NewsHero } from "@/components/news/news-hero"
+import { CategoryTabs } from "@/components/news/category-tabs"
+import { NewsGrid } from "@/components/news/news-grid"
+import { NewsPagination } from "@/components/news/news-pagination"
+import { TrendingNews } from "@/components/news/trending-news"
+import { PageAttachment } from "@/components/SavedArticle/page-attachment"
+import { getTopHeadlines } from "@/services"
 
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+interface HomePageProps {
+  searchParams: {
+    category?: string
+    page?: string
+  }
+}
 
-export default function Home() {
+export default async function Home({ searchParams }: HomePageProps) {
+  const category = searchParams.category || "general"
+  const page = Number.parseInt(searchParams.page || "1", 10)
+  const pageSize = 9
+
+  const newsData = await getTopHeadlines("us", category, pageSize, page)
+  const trendingNews = await getTopHeadlines("us", "general", 5, 1)
+
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-xl text-center justify-center">
-        <span className={title()}>Make&nbsp;</span>
-        <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
-        <br />
-        <span className={title()}>
-          websites regardless of your design experience.
-        </span>
-        <div className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
+    <section className="flex flex-col items-center justify-center w-full">
+      <NewsHero />
+
+      <div className="w-full">
+        <CategoryTabs />
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <div className="lg:col-span-3">
+            <h2 className="text-2xl font-bold mb-6">Noticias principales</h2>
+            <NewsGrid articles={newsData.articles} />
+            <NewsPagination totalResults={newsData.totalResults} currentPage={page} pageSize={pageSize} />
+          </div>
+
+          <div className="lg:col-span-1">
+            <TrendingNews articles={trendingNews.articles} />
+          </div>
         </div>
       </div>
 
-      <div className="flex gap-3">
-        <Link
-          isExternal
-          className={buttonStyles({
-            color: "primary",
-            radius: "full",
-            variant: "shadow",
-          })}
-          href={siteConfig.links.docs}
-        >
-          Documentation
-        </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          <GithubIcon size={20} />
-          GitHub
-        </Link>
-      </div>
-
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
-      </div>
+      <PageAttachment />
     </section>
-  );
+  )
 }
+
+
