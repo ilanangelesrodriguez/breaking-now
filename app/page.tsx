@@ -13,9 +13,9 @@ interface HomePageProps {
   };
 }
 
-export default async function Home({ searchParams = {} }: HomePageProps) {
-  const category = searchParams.category || "general";
-  const page = Number.parseInt(searchParams.page || "1", 10);
+export default async function Home({ searchParams }: HomePageProps) {
+  const category = searchParams?.category || "general";
+  const page = Number.parseInt(searchParams?.page || "1", 10);
   const pageSize = 9;
 
   const newsData = await getTopHeadlines("us", category, pageSize, page);
@@ -45,3 +45,4 @@ export default async function Home({ searchParams = {} }: HomePageProps) {
     </section>
   );
 }
+
