@@ -4,7 +4,6 @@ import { SearchHeader } from "@/components/news/search-header"
 import { searchNews } from "@/services"
 
 export default async function SearchPage(props: any) {
-  // Extraemos searchParams de props
   const searchParams = props.searchParams || {}
 
   const query = searchParams.q || ""

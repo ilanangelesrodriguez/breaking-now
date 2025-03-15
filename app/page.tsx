@@ -7,7 +7,6 @@ import { PageAttachment } from "@/components/SavedArticle/page-attachment"
 import { getTopHeadlines } from "@/services"
 
 export default async function Home(props: any) {
-  // Extraemos searchParams de props
   const searchParams = props.searchParams || {}
 
   const category = typeof searchParams.category === "string" ? searchParams.category : "general"
