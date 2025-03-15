@@ -7,13 +7,13 @@ import { PageAttachment } from "@/components/SavedArticle/page-attachment";
 import { getTopHeadlines } from "@/services";
 
 interface HomePageProps {
-  searchParams: {
+  searchParams?: {
     category?: string;
     page?: string;
   };
 }
 
-export default async function Home({ searchParams }: HomePageProps) {
+export default async function Home({ searchParams = {} }: HomePageProps) {
   const category = searchParams.category || "general";
   const page = Number.parseInt(searchParams.page || "1", 10);
   const pageSize = 9;
