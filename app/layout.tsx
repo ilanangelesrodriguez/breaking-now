@@ -47,7 +47,7 @@ export default function RootLayout({
                 title="Mi Perfil"
               >
                 <span className="text-default-600">Desarrollado por </span>
-                <p className="text-primary">Ilan</p>
+                <p className="text-primary">Ilan Angeles</p>
               </Link>
             </footer>
           </div>

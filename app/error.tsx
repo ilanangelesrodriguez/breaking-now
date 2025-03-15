@@ -12,7 +12,6 @@ export default function Error({
   reset: () => void
 }) {
   useEffect(() => {
-    // Log the error to an error reporting service
     console.error(error)
   }, [error])
 
@@ -25,10 +24,10 @@ export default function Error({
         inicio.
       </p>
       <div className="flex gap-4">
-        <Button color="primary" startContent={<FaRedo />} onClick={() => reset()}>
+        <Button color="primary" startContent={<FaRedo />} onPress={() => reset()}>
           Intentar de nuevo
         </Button>
-        <Button variant="bordered" startContent={<FaHome />} onClick={() => (window.location.href = "/")}>
+        <Button variant="bordered" startContent={<FaHome />} onPress={() => (window.location.href = "/")}>
           Volver al inicio
         </Button>
       </div>

@@ -3,8 +3,8 @@ import { CategoryTabs } from "@/components/news/category-tabs"
 import { NewsGrid } from "@/components/news/news-grid"
 import { NewsPagination } from "@/components/news/news-pagination"
 import { TrendingNews } from "@/components/news/trending-news"
-import { PageAttachment } from "@/components/news/page-attachment"
-import { getTopHeadlines } from "@/services/api"
+import { PageAttachment } from "@/components/SavedArticle/page-attachment"
+import { getTopHeadlines } from "@/services"
 
 interface HomePageProps {
   searchParams: {
@@ -41,7 +41,6 @@ export default async function Home({ searchParams }: HomePageProps) {
         </div>
       </div>
 
-      {/* Page Attachment for favorites and saved articles */}
       <PageAttachment />
     </section>
   )
