@@ -37,7 +37,6 @@ export const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
         >
           <form onSubmit={handleSearch} className="max-w-2xl mx-auto">
             <Input
-              autoFocus
               fullWidth
               placeholder="Buscar noticias..."
               size="lg"

@@ -83,12 +83,12 @@ export const Navbar = () => {
               const isActive = pathname === item.href
               return (
                 <NavbarItem key={item.href}>
-                  <a
+                  <Button
                     className={clsx(
                       linkStyles({ color: "foreground" }),
-                      "data-[active=true]:text-primary data-[active=true]:font-medium relative py-2 text-sm",
+                      "data-[active=true]:text-primary data-[active=true]:font-medium relative py-2 text-sm bg-transparent",
                     )}
-                    color="foreground"
+                    color="default"
                     href={item.href}
                     onClick={(e) => {
                       e.preventDefault()
@@ -106,7 +106,7 @@ export const Navbar = () => {
                         transition={{ duration: 0.3 }}
                       />
                     )}
-                  </a>
+                  </Button>
                 </NavbarItem>
               )
             })}
