@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { Card, CardBody, CardFooter, Image, Button, Tooltip } from "@heroui/react"
+import { Card, CardBody, CardFooter, Image, Button, Tooltip, Link } from "@heroui/react"
 import { motion } from "framer-motion"
 import { FaClock, FaExternalLinkAlt, FaBookmark, FaRegBookmark, FaHeart, FaRegHeart } from "react-icons/fa"
 import { formatDistanceToNow } from "date-fns"
@@ -58,7 +58,7 @@ export const NewsCard = ({ article, index }: NewsCardProps) => {
       <Card className="h-full">
         <CardBody className="p-0 overflow-hidden">
           <div className="relative overflow-hidden w-full h-40">
-            <a href={`/article/${articleId}`} className="block w-full h-full" onClick={handleArticleClick}>
+            <Link  href={`/article/${articleId}`} className="block w-full h-full" onClick={handleArticleClick}>
               <Image
                 alt={article.title}
                 className="w-full h-[50vh] object-cover transition-transform duration-500"
@@ -67,7 +67,7 @@ export const NewsCard = ({ article, index }: NewsCardProps) => {
                 fallbackSrc={placeholderImage}
                 onError={() => setImageError(true)}
               />
-            </a>
+            </Link >
             <div
               className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4"
               style={{ zIndex: 15 }}
@@ -102,7 +102,6 @@ export const NewsCard = ({ article, index }: NewsCardProps) => {
             <a
               href={`/article/${articleId}`}
               className="hover:text-primary transition-colors"
-              onClick={handleArticleClick}
             >
               <Tooltip className="text-[10px]" content={article.title}>
                 <h3 className="font-bold text-lg line-clamp-2 mb-2">{article.title}</h3>
@@ -116,13 +115,13 @@ export const NewsCard = ({ article, index }: NewsCardProps) => {
         <CardFooter className="flex justify-between items-center">
           <p className="text-xs text-default-500">{article.source.name || "Fuente desconocida"}</p>
           <div className="flex items-center gap-2">
-            <a
+            <Link
               href={`/article/${articleId}`}
               className="text-primary flex items-center gap-1 text-sm"
               onClick={handleArticleClick}
             >
               Leer más <FaExternalLinkAlt size={12} />
-            </a>
+            </Link>
           </div>
         </CardFooter>
       </Card>

@@ -1,4 +1,4 @@
-import { Button, Card, CardBody, Tooltip, Image } from "@heroui/react"
+import { Button, Card, CardBody, Tooltip, Image, Link } from "@heroui/react"
 import { formatDistanceToNow } from "date-fns"
 import { FaBookmark, FaHeart } from "react-icons/fa"
 import { es } from "date-fns/locale"
@@ -32,7 +32,7 @@ export const SavedArticleCard = ({ article, type, onRemove, onArticleClick }: Sa
             </div>
             <div className="flex-1 p-2 flex flex-col justify-between relative">
               <div>
-                <a
+                <Link
                   href="#"
                   onClick={(e) => {
                     e.preventDefault()
@@ -43,7 +43,7 @@ export const SavedArticleCard = ({ article, type, onRemove, onArticleClick }: Sa
                   <Tooltip content={article.title}>
                     <h3 className="font-medium text-sm line-clamp-2 pr-7">{article.title}</h3>
                   </Tooltip>
-                </a>
+                </Link>
               </div>
               <div className="flex justify-between items-center mt-1">
                 <p className="text-xs text-default-500">{formattedDate}</p>
