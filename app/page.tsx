@@ -1,25 +1,22 @@
-import { NewsHero } from "@/components/news/news-hero";
-import { CategoryTabs } from "@/components/news/category-tabs";
-import { NewsGrid } from "@/components/news/news-grid";
-import { NewsPagination } from "@/components/news/news-pagination";
-import { TrendingNews } from "@/components/news/trending-news";
-import { PageAttachment } from "@/components/SavedArticle/page-attachment";
-import { getTopHeadlines } from "@/services";
+import { NewsHero } from "@/components/news/news-hero"
+import { CategoryTabs } from "@/components/news/category-tabs"
+import { NewsGrid } from "@/components/news/news-grid"
+import { NewsPagination } from "@/components/news/news-pagination"
+import { TrendingNews } from "@/components/news/trending-news"
+import { PageAttachment } from "@/components/SavedArticle/page-attachment"
+import { getTopHeadlines } from "@/services"
 
-interface HomePageProps {
-  searchParams?: {
-    category?: string;
-    page?: string;
-  };
-}
+export default async function Home({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined }
+}) {
+  const category = typeof searchParams?.category === "string" ? searchParams.category : "general"
+  const page = Number.parseInt(typeof searchParams?.page === "string" ? searchParams.page : "1", 10)
+  const pageSize = 9
 
-export default async function Home({ searchParams }: HomePageProps) {
-  const category = searchParams?.category || "general";
-  const page = Number.parseInt(searchParams?.page || "1", 10);
-  const pageSize = 9;
-
-  const newsData = await getTopHeadlines("us", category, pageSize, page);
-  const trendingNews = await getTopHeadlines("us", "general", 5, 1);
+  const newsData = await getTopHeadlines("us", category, pageSize, page)
+  const trendingNews = await getTopHeadlines("us", "general", 5, 1)
 
   return (
     <section className="flex flex-col items-center justify-center w-full">
@@ -43,6 +40,5 @@ export default async function Home({ searchParams }: HomePageProps) {
 
       <PageAttachment />
     </section>
-  );
+  )
 }
-
