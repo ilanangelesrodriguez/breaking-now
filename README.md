@@ -46,6 +46,34 @@ La aplicación utiliza los siguientes endpoints de News API:
   - Parámetros: q (query), language, sortBy, pageSize, page
   - Utilizado para búsquedas y para obtener artículos específicos
 
+## 🔄 CI/CD y Flujo de Trabajo
+
+### 🚀 Integración y Despliegue Continuo
+
+Breaking News utiliza GitHub Actions para automatizar el proceso de integración y despliegue continuo:
+
+- 🧪 **Pruebas Automáticas**: Cada pull request y push a las ramas principales activa pruebas automáticas y linting.
+- 🚀 **Despliegue Automático**: Los cambios en la rama `main` se despliegan automáticamente a producción.
+- 📦 **Releases Automáticos**: La creación de tags con el formato `v*.*.*` genera automáticamente releases en GitHub.
+
+### 🌊 Git Flow
+
+Este proyecto sigue la metodología Git Flow para gestionar el desarrollo:
+
+- 🛠️ **main**: Rama de producción estable
+- 🧪 **develop**: Rama de desarrollo e integración
+- ✨ **feature/**: Ramas para nuevas características
+- 🐛 **hotfix/**: Ramas para correcciones urgentes
+- 🚀 **release/**: Ramas para preparar nuevas versiones
+
+#### Flujo de trabajo:
+
+1. Se crean ramas `feature/nombre-caracteristica` desde `develop`
+2. Al completar la característica, se fusiona de vuelta a `develop` mediante pull request
+3. Para preparar un release, se crea una rama `release/v*.*.*` desde `develop`
+4. Después de pruebas, la rama `release` se fusiona tanto en `main` como en `develop`
+5. Se crea un tag en `main` para generar automáticamente un release
+
 ## 🧩 Componentes principales
 
 ### 🖥️ Server Components
@@ -67,6 +95,7 @@ La aplicación utiliza los siguientes endpoints de News API:
 - **SearchHeader**: Cabecera de la página de búsqueda con filtros avanzados
 - **NewsPagination**: Paginación para navegar entre resultados
 - **PageAttachment**: Panel flotante para acceder rápidamente a favoritos y guardados
+
 
 ## ❓ Solución de problemas
 
